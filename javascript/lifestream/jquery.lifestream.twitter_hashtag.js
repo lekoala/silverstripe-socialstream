@@ -90,7 +90,7 @@ $.fn.lifestream.feeds.twitter = function (config, callback) {
 			};
 
 	$.ajax({
-		"url": '/socialstream/search/?query=' + encodeURIComponent('@' + config.user),
+		"url": '/socialstream/user/?query=' + encodeURIComponent(config.user),
 		"cache": false
 	}).success(parseTwitter);
 

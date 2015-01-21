@@ -210,8 +210,21 @@ class TwitterAPIExchange
         }
 
         $feed = curl_init();
+
+        // Fix ca cert permissions
+        if (strlen(ini_get('curl.cainfo')) === 0) {
+            curl_setopt($feed, CURLOPT_CAINFO,
+                __DIR__."/cacert.pem");
+        }
+
         curl_setopt_array($feed, $options);
         $json = curl_exec($feed);
+
+        // Handle errors
+        if(!$json) {
+            throw new Exception(curl_error($feed));
+        }
+
         curl_close($feed);
 
         if ($return) { return $json; }

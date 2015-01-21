@@ -4,9 +4,11 @@ class SocialstreamSiteConfig extends DataExtension
 {
     private static $db = array(
         'TwitterUsername' => 'Varchar(255)',
+        'TwitterHashtag' => 'Varchar(255)',
         'FacebookPage' => 'Varchar(255)',
         'VimeoUsername' => 'Varchar(255)',
         'YoutubeUsername' => 'Varchar(255)',
+        'LifestreamWhitelist' => 'Varchar(255)'
     );
 
     public function listAvailableMediaServices()
@@ -46,16 +48,23 @@ class SocialstreamSiteConfig extends DataExtension
             'wordpress' => array(),
             'youtube' => array(),
             'zotero' => array(),
+            // custom services
+            'twitter_hashtag' => array(),
         );
     }
 
     public function updateCMSFields(FieldList $fields)
     {
         $fields->addFieldToTab('Root.Social', new TextField('TwitterUsername'));
+        $fields->addFieldToTab('Root.Social', new TextField('TwitterHashtag'));
         $fields->addFieldToTab('Root.Social', new TextField('FacebookPage'));
         $fields->addFieldToTab('Root.Social', new TextField('VimeoUsername'));
         $fields->addFieldToTab('Root.Social', new TextField('YoutubeUsername'));
 
+        $services = array_keys(self::listAvailableMediaServices());
+        $fields->addFieldToTab('Root.Social', $wl = new ListboxField('LifestreamWhitelist', 'Lifestream Whitelist', array_combine($services,$services)));
+        $wl->setMultiple(true);
+        $wl->setDescription('A list of services to display on the Lifestream. If left blank, all configured streams will be used.');
         return $fields;
     }
 

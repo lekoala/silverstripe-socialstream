@@ -7,6 +7,8 @@ After:
 SiteConfig:
   extensions: 
     - SocialstreamSiteConfig
+SocialstreamController:
+  enable_cache: true
 Director:
   rules:
     'socialstream//$Action/$ID/$Name': 'SocialstreamController'

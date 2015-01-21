@@ -1,6 +1,11 @@
 Silverstripe Socialstream module
 ==================
-WIP
+This module adds social stream, sharing and links capabilities to your website.
+
+Lifestream
+==================
+Configure your social media links through the SiteConfig (currently limited to a restricted list)
+and apply extension to your Controller
 
 Compatibility
 ==================
