@@ -1,0 +1,12 @@
+---
+Name: mysite
+After:
+  - 'framework/*'
+  - 'cms/*'
+---
+SiteConfig:
+  extensions: 
+    - SocialstreamSiteConfig
+Director:
+  rules:
+    'socialstream//$Action/$ID/$Name': 'SocialstreamController'

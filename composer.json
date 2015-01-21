@@ -1,0 +1,21 @@
+{
+	"name": "lekoala/silverstripe-socialstream",
+	"description": "Adds social plugins to the SilverStripe CMS",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "lifestream", "module", "cms"],
+	"license": "BSD-3-Clause",
+	"authors": [
+		{
+			"name": "LeKoala",
+			"email": "thomas@lekoala.be"
+		}
+	],
+	"require":
+			{
+				"silverstripe/framework": "~3.1"
+			},
+	"extra": {
+		"installer-name": "socialstream"
+	}
+
+}
