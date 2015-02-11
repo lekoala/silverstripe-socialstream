@@ -12,7 +12,11 @@ class SocialstreamSiteConfig extends DataExtension
         'RssFeed' => 'Varchar(255)',
         'FlickrUsername' => 'Varchar(255)',
         'GithubUsername' => 'Varchar(255)',
-        'LifestreamWhitelist' => 'Varchar(255)'
+        'LifestreamWhitelist' => 'Varchar(255)',
+        'LifestreamItems' => 'Int'
+    );
+    private static $defaults = array(
+        'LifestreamItems' => 5
     );
 
     public static function listAvailableMediaServices()
@@ -66,43 +70,59 @@ class SocialstreamSiteConfig extends DataExtension
 
         if (in_array('twitter', $services)) {
             $fields->addFieldToTab('Root.Social',
-                new TextField('TwitterUsername'));
+                new TextField('TwitterUsername',
+                _t('Socialstream.TwitterUsername', 'Twitter Username')));
         }
         if (in_array('twitter_hashtag', $services)) {
             $fields->addFieldToTab('Root.Social',
-                new TextField('TwitterHashtag'));
+                new TextField('TwitterHashtag',
+                _t('Socialstream.TwitterHashtag', 'Twitter Hashtag')));
         }
         if (in_array('facebook_page', $services)) {
-            $fields->addFieldToTab('Root.Social', new TextField('FacebookPage'));
+            $fields->addFieldToTab('Root.Social',
+                new TextField('FacebookPage',
+                _t('Socialstream.FacebookPage', 'Facebook Page')));
         }
         if (in_array('vimeo', $services)) {
-            $fields->addFieldToTab('Root.Social', new TextField('VimeoUsername'));
+            $fields->addFieldToTab('Root.Social',
+                new TextField('VimeoUsername',
+                _t('Socialstream.VimeoUsername', 'Vimeo Username')));
         }
         if (in_array('youtube', $services)) {
             $fields->addFieldToTab('Root.Social',
-                new TextField('YoutubeUsername'));
+                new TextField('YoutubeUsername',
+                _t('Socialstream.YoutubeUsername', 'Youtube Username')));
         }
         if (in_array('dailymotion', $services)) {
             $fields->addFieldToTab('Root.Social',
-                new TextField('DailymotionUsername'));
+                new TextField('DailymotionUsername',
+                _t('Socialstream.DailymotionUsername', 'Dailymotion Username')));
         }
         if (in_array('rss', $services)) {
-            $fields->addFieldToTab('Root.Social', new TextField('RssFeed'));
+            $fields->addFieldToTab('Root.Social',
+                new TextField('RssFeed', _t('Socialstream.RssFeed', 'Rss Feed')));
         }
         if (in_array('flickr', $services)) {
             $fields->addFieldToTab('Root.Social',
-                new TextField('FlickrUsername'));
+                new TextField('FlickrUsername',
+                _t('Socialstream.FlickrUsername', 'Flickr Username')));
         }
         if (in_array('github', $services)) {
             $fields->addFieldToTab('Root.Social',
-                new TextField('GithubUsername'));
+                new TextField('GithubUsername',
+                _t('Socialstream.GithubUsername', 'Github Username')));
         }
 
         $fields->addFieldToTab('Root.Social',
             $wl = new ListboxField('LifestreamWhitelist',
-            'Lifestream Whitelist', array_combine($services, $services)));
+            _t('Socialstream.LifestreamWhitelist', 'Lifestream Whitelist'),
+            array_combine($services, $services)));
         $wl->setMultiple(true);
         $wl->setDescription('A list of services to display on the Lifestream. If left blank, all configured streams will be used.');
+
+        $fields->addFieldToTab('Root.Social',
+            new NumericField('LifestreamItems',
+            _t('Socialstream.LifestreamItems', 'Lifestream Items')));
         return $fields;
     }
 

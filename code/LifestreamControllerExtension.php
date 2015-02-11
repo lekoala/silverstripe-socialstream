@@ -39,11 +39,11 @@ class LifestreamControllerExtension extends Extension
             $services[] = '{ service : "youtube", user: "'.$config->YoutubeUsername.'" }';
         }
 
-        $script = 'var lifestreamList = ['.implode(',', $services).'];$("#lifestream").lifestream({classname: "lifestream",limit: 5,list: lifestreamList});';
+        $script = 'var lifestreamList = ['.implode(',', $services).'];$("#lifestream").lifestream({classname: "lifestream",limit: '.$config->LifestreamItems.',list: lifestreamList});';
         Requirements::customScript($script);
         Requirements::css('socialstream/javascript/lifestream/lifestream.css');
-        Requirements::javascript('socialstream/javascript/lifestream/jquery.lifestream.js');
-        Requirements::javascript('socialstream/javascript/lifestream/jquery.lifestream.ext.js');
+        Requirements::javascript('socialstream/javascript/lifestream/jquery.lifestream.min.js');
+        Requirements::javascript('socialstream/javascript/lifestream/jquery.lifestream.ext.min.js');
     }
 
     public function Lifestream()
