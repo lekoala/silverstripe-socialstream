@@ -7,6 +7,16 @@ After:
 SiteConfig:
   extensions: 
     - SocialstreamSiteConfig
+  available_services:
+    - dailymotion
+    - facebook_page
+    - flickr
+    - github
+    - rss
+    - twitter
+    - vimeo
+    - youtube
+    - twitter_hashtag
 SocialstreamController:
   enable_cache: true
 Director:
