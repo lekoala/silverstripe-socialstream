@@ -133,10 +133,16 @@
 				for (; i < j; i++) {
 					var item = list[i];
 					if ($.trim(item.text)) {
+						var shortText = item.text;
+						if(shortText.length > 255) {
+							shortText = shortText.substr(0,255) + '...';
+							// Prevent cutting words
+							shortText = shortText.substr(0,Math.min(shortText.length, shortText.lastIndexOf(" ")));
+						}
 						output.push({
 							date: new Date(item.createdAt * 1000), //unix time in milli seconds instead of php seconds
 							config: config,
-							html: $.tmpl(template.facebook_post, {text: facebookLinkify($('<div/>').html(item.text).text())})
+							html: $.tmpl(template.facebook_post, {text: facebookLinkify($('<div/>').html(shortText).text())})
 						});
 
 					}
