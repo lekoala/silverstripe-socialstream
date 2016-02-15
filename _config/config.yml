@@ -5,7 +5,7 @@ After:
   - 'cms/*'
 ---
 SiteConfig:
-  extensions: 
+  extensions:
     - SocialstreamSiteConfig
   available_services:
     - dailymotion
